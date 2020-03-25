@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.todo1.model.Origen;
+import com.todo1.service.DataBaseService;
 import com.todo1.service.OrigenService;
 
 @RestController
@@ -23,23 +24,32 @@ public class OrigenRestController {
 	@Autowired
 	private OrigenService serv;
 	
+	@Autowired
+	private DataBaseService dbserv;
+	
+	
+	
 	@GetMapping
 	public ResponseEntity<List<Origen>> listar(){
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.listar());
 	}
 	
 	@PostMapping
-	public ResponseEntity<Origen> insertar(@RequestBody Origen org) {			
+	public ResponseEntity<Origen> insertar(@RequestBody Origen org) {	
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.crear(org));	
 	}
 	
 	@PutMapping
 	public ResponseEntity<Origen> modificar(@RequestBody Origen org) {
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.modificar(org));	
 	}
 	
 	@DeleteMapping
 	public void eliminar(@RequestBody Origen org) {
+		dbserv.validarAccesoDataBase();
 		serv.eliminar(org);		
 	}
 }

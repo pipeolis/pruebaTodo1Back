@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.todo1.model.Movimiento;
+import com.todo1.service.DataBaseService;
 import com.todo1.service.MovimientoService;
 
 @RestController
@@ -23,13 +24,18 @@ public class MovimientoRestController {
 	@Autowired
 	private MovimientoService serv;	
 	
+	@Autowired
+	private DataBaseService dbserv;
+	
 	@GetMapping
 	public ResponseEntity<List<Movimiento>> listar(){
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.listar());
 	} 
 	
 	@PostMapping
 	public ResponseEntity<Movimiento> insertar(@RequestBody Movimiento mov){		
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.crear(mov));		
 	}
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.todo1.model.Producto;
+import com.todo1.service.DataBaseService;
 import com.todo1.service.ProductoService;
 
 @RestController
@@ -23,23 +24,30 @@ public class ProductoRestController {
 	@Autowired
 	private ProductoService serv;
 	
+	@Autowired
+	private DataBaseService dbserv;
+	
 	@GetMapping
 	public ResponseEntity<List<Producto>> listar(){
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.listar());
 	}
 	
 	@PostMapping
-	public ResponseEntity<Producto> insertar(@RequestBody Producto prod) {			
+	public ResponseEntity<Producto> insertar(@RequestBody Producto prod) {	
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.crear(prod));	
 	}
 	
 	@PutMapping
 	public ResponseEntity<Producto> modificar(@RequestBody Producto prod) {
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.modificar(prod));	
 	}
 	
 	@DeleteMapping
 	public void eliminar(@RequestBody Producto prod) {
+		dbserv.validarAccesoDataBase();
 		serv.eliminar(prod);		
 	}
 }

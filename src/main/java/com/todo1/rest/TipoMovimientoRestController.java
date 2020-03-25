@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.todo1.model.TipoMovimiento;
+import com.todo1.service.DataBaseService;
 import com.todo1.service.TipoMovimientoService;
 
 @RestController
@@ -23,23 +24,30 @@ public class TipoMovimientoRestController {
 	@Autowired
 	private TipoMovimientoService serv;
 	
+	@Autowired
+	private DataBaseService dbserv;	
+	
 	@GetMapping
 	public ResponseEntity<List<TipoMovimiento>> listar(){
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.listar());
 	}
 	
 	@PostMapping
-	public ResponseEntity<TipoMovimiento> insertar(@RequestBody TipoMovimiento tmov) {			
+	public ResponseEntity<TipoMovimiento> insertar(@RequestBody TipoMovimiento tmov) {
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.crear(tmov));	
 	}
 	
 	@PutMapping
 	public ResponseEntity<TipoMovimiento> modificar(@RequestBody TipoMovimiento tmov) {
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.modificar(tmov));	
 	}
 	
 	@DeleteMapping
 	public void eliminar(@RequestBody TipoMovimiento tmov) {
+		dbserv.validarAccesoDataBase();
 		serv.eliminar(tmov);		
 	}
 }

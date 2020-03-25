@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.todo1.model.TipoProducto;
+import com.todo1.service.DataBaseService;
 import com.todo1.service.TipoProductoService;
 
 @RestController
@@ -23,23 +24,30 @@ public class TipoProductoRestController {
 	@Autowired
 	private TipoProductoService serv;
 	
+	@Autowired
+	private DataBaseService dbserv;	
+	
 	@GetMapping
 	public ResponseEntity<List<TipoProducto>> listar(){
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.listar());
 	}
 	
 	@PostMapping
-	public ResponseEntity<TipoProducto> insertar(@RequestBody TipoProducto tprod) {			
+	public ResponseEntity<TipoProducto> insertar(@RequestBody TipoProducto tprod) {	
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.crear(tprod));	
 	}
 	
 	@PutMapping
 	public ResponseEntity<TipoProducto> modificar(@RequestBody TipoProducto tprod) {
+		dbserv.validarAccesoDataBase();
 		return ResponseEntity.ok(serv.modificar(tprod));	
 	}
 	
 	@DeleteMapping
 	public void eliminar(@RequestBody TipoProducto tprod) {
+		dbserv.validarAccesoDataBase();
 		serv.eliminar(tprod);		
 	}
 }

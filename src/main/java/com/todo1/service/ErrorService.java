@@ -17,27 +17,27 @@ public class ErrorService extends ResponseEntityExceptionHandler {
 	private static final ConcurrentHashMap<String, Integer> CODIGOS_ESTADO = new ConcurrentHashMap<>();
 
 	public ErrorService() {
-		CODIGOS_ESTADO.put(TipoProductoService.class.getName() + "-ELIMINAR_NO_EXISTE", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(TipoProductoService.class.getName() + "-CREAR_YA_EXISTE", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(TipoProductoService.class.getName() + "-MODIFICAR_YA_EXISTE", HttpStatus.CONFLICT.value()); // 409
+		CODIGOS_ESTADO.put(TipoProductoService.class.getName() + "-ELIMINAR_NO_EXISTE", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(TipoProductoService.class.getName() + "-CREAR_YA_EXISTE", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(TipoProductoService.class.getName() + "-MODIFICAR_YA_EXISTE", HttpStatus.CONFLICT.value()); 
 
-		CODIGOS_ESTADO.put(TipoMovimientoService.class.getName() + "-ELIMINAR_NO_EXISTE", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(TipoMovimientoService.class.getName() + "-CREAR_YA_EXISTE", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(TipoMovimientoService.class.getName() + "-MODIFICAR_YA_EXISTE", HttpStatus.CONFLICT.value()); // 409
+		CODIGOS_ESTADO.put(TipoMovimientoService.class.getName() + "-ELIMINAR_NO_EXISTE", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(TipoMovimientoService.class.getName() + "-CREAR_YA_EXISTE", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(TipoMovimientoService.class.getName() + "-MODIFICAR_YA_EXISTE", HttpStatus.CONFLICT.value()); 
 
-		CODIGOS_ESTADO.put(OrigenService.class.getName() + "-ELIMINAR_NO_EXISTE", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(OrigenService.class.getName() + "-CREAR_YA_EXISTE", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(OrigenService.class.getName() + "-MODIFICAR_YA_EXISTE", HttpStatus.CONFLICT.value()); // 409
+		CODIGOS_ESTADO.put(OrigenService.class.getName() + "-ELIMINAR_NO_EXISTE", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(OrigenService.class.getName() + "-CREAR_YA_EXISTE", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(OrigenService.class.getName() + "-MODIFICAR_YA_EXISTE", HttpStatus.CONFLICT.value()); 
 
-		CODIGOS_ESTADO.put(ProductoService.class.getName() + "-ELIMINAR_NO_EXISTE", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(ProductoService.class.getName() + "-CREAR_YA_EXISTE", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(ProductoService.class.getName() + "-MODIFICAR_YA_EXISTE", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(ProductoService.class.getName() + "-TIPO_PRODUCTO_NO_EXISTE", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(ProductoService.class.getName() + "-ORIGEN_NO_EXISTE", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(MovimientoRestController.class.getName() + "-PRODUCTO_NO_EXISTE", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(MovimientoService.class.getName() + "-SUPERA_STOCK", HttpStatus.CONFLICT.value()); // 409
-		CODIGOS_ESTADO.put(MovimientoService.class.getName() + "-CANT_VALOR_MENOR_IGUAL_CERO", HttpStatus.CONFLICT.value()); // 409
-		
+		CODIGOS_ESTADO.put(ProductoService.class.getName() + "-ELIMINAR_NO_EXISTE", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(ProductoService.class.getName() + "-CREAR_YA_EXISTE", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(ProductoService.class.getName() + "-MODIFICAR_YA_EXISTE", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(ProductoService.class.getName() + "-TIPO_PRODUCTO_NO_EXISTE", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(ProductoService.class.getName() + "-ORIGEN_NO_EXISTE", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(MovimientoRestController.class.getName() + "-PRODUCTO_NO_EXISTE", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(MovimientoService.class.getName() + "-SUPERA_STOCK", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(MovimientoService.class.getName() + "-CANT_VALOR_MENOR_IGUAL_CERO", HttpStatus.CONFLICT.value()); 
+		CODIGOS_ESTADO.put(DataBaseService.class.getName() + "-SIN_CONEXION", HttpStatus.PRECONDITION_FAILED.value()); 
 
 	}
 
@@ -90,9 +90,9 @@ public class ErrorService extends ResponseEntityExceptionHandler {
 			mensaje = "a cantidad o valor unitario de producto son menores o iguales a cero";
 			break;
 			
-//		case "":
-//			mensaje = "";
-//			break;
+		case "SIN_CONEXION":
+			mensaje = "Sin conexión a base de datos";
+			break;
 		default:
 			mensaje = "Ocurrió un error favor contactar al administrador.";
 			break;

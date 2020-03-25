@@ -20,7 +20,7 @@ public class MovimientoService {
 	@Autowired
 	private ProductoService pserv;
 
-	Logger log = LoggerFactory.getLogger(MovimientoService.class);
+	Logger LOG = LoggerFactory.getLogger(MovimientoService.class);
 
 	/**
 	 * Método que permite crear un movimiento
@@ -31,20 +31,20 @@ public class MovimientoService {
 	public Movimiento crear(Movimiento mov) {
 		
 		if(!pserv.existeProductoById(mov.getIdProducto())) {
-			log.error("No existe producto");
+			LOG.error("No existe producto");
 			throw new Excepcion(MovimientoRestController.class.getName() + "-PRODUCTO_NO_EXISTE");
 		}
 		
 		if (mov.getIdTipoMovimiento() == 1) {// VENTA
 			if (mov.getCantidad() > stockProducto(mov.getIdProducto())) {
-				log.error("La cantidad del producto supera el stock");
+				LOG.error("La cantidad del producto supera el stock");
 				throw new Excepcion(MovimientoService.class.getName() + "-SUPERA_STOCK");
 			}
 
 		}
 
 		if (!validarPositivo(mov)) {
-			log.error("La cantidad o valor unitario de producto son menores o iguales a cero. Verifique");
+			LOG.error("La cantidad o valor unitario de producto son menores o iguales a cero. Verifique");
 			throw new Excepcion(MovimientoService.class.getName() + "-CANT_VALOR_MENOR_IGUAL_CERO");
 		}		
 
