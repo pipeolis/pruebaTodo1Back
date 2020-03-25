@@ -9,7 +9,7 @@ import com.todo1.exception.Excepcion;
 
 @Service
 public class DataBaseService {
-	Logger LOG = LoggerFactory.getLogger(MovimientoService.class);
+	Logger LOG = LoggerFactory.getLogger(DataBaseService.class);
 
 	@Value("${spring.datasource.driver-class-name}")
 	private String clase;
