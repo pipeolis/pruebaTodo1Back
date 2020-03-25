@@ -120,12 +120,13 @@ public class ProductoService {
 	 * 
 	 * @param prod
 	 */
-	public void eliminar(Producto prod) {
+	public boolean eliminar(Producto prod) {
 		if (!existeProducto(prod.getDescripcion())) {
 			log.error("El producto no existe");
 			throw new Excepcion(ProductoService.class.getName() + "-ELIMINAR_NO_EXISTE");
 		}
 		repoProducto.deleteById(prod.getIdProducto());
+		return true;
 	}
 	
 	/**

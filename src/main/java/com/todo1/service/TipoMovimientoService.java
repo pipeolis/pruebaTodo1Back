@@ -70,12 +70,13 @@ public class TipoMovimientoService {
 	 * 
 	 * @param tmov
 	 */
-	public void eliminar(TipoMovimiento tmov) {
+	public boolean eliminar(TipoMovimiento tmov) {
 		if (!existe(tmov.getDescripcion())) {
 			log.error("El tipo movimiento no existe");
 			throw new Excepcion(TipoMovimientoService.class.getName() + "-ELIMINAR_NO_EXISTE");
 		}
 		repo.deleteById(tmov.getIdTipoMovmiento());
+		return true;
 	}
 
 }

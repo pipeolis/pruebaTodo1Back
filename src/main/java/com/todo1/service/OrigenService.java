@@ -71,12 +71,13 @@ public class OrigenService {
 	 * 
 	 * @param org
 	 */
-	public void eliminar(Origen org) {
+	public boolean eliminar(Origen org) {
 		if (!existe(org.getDescripcion())) {
 			log.error("El origen no existe");
 			throw new Excepcion(OrigenService.class.getName() + "-ELIMINAR_NO_EXISTE");
 		}
 		repo.deleteById(org.getIdOrigen());
+		return true;
 	}
 
 }

@@ -70,12 +70,13 @@ public class TipoProductoService {
 	 * 
 	 * @param tprod
 	 */
-	public void eliminar(TipoProducto tprod) {
+	public boolean eliminar(TipoProducto tprod) {
 		if (!existe(tprod.getDescripcion())) {
 			log.error("El tipo producto no existe");
 			throw new Excepcion(TipoProductoService.class.getName() + "-ELIMINAR_NO_EXISTE");
 		}
 		repo.deleteById(tprod.getIdTipoProducto());
+		return true;
 	}
 
 }
